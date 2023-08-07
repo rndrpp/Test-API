@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <div>
+      <form th:action="@{/faculty/save}" method="post" th:object="${faculty}">
+        <input
+          id="id"
+          name="id"
+          th:field="*{faculty_id}"
+          placeholder="id"
+          type="text"
+          hidden
+        />
+        <input
+          id="name"
+          name="name"
+          th:field="*{name}"
+          placeholder="name"
+          type="text"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

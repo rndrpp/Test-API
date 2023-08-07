@@ -1,0 +1,53 @@
+<html>
+  <body>
+    <div>
+      <form th:action="@{/schedule/save}" method="post" th:object="${schedule}">
+        <input
+          id="id"
+          name="schedule_id"
+          th:field="*{schedule_id}"
+          type="text"
+        />
+        <select th:field = "*{group}">
+          <option th:each="group : ${groups}" th:value="${group.group_id}" th:selected="{group.group_id}" th:text="${group.name}"></option>
+        </select>
+        <input
+          id="room"
+          name="room"
+          th:field="*{room}"
+          placeholder="room id"
+          type="text"
+        />
+        <input
+          id="start_date"
+          name="start_date"
+          th:field="*{start_date}"
+          placeholder="start date"
+          type="text"
+        />
+        <input
+          id="end_date"
+          name="end_date"
+          th:field="*{end_date}"
+          placeholder="end date"
+          type="text"
+        />
+        <input
+          id="time"
+          name="time"
+          th:field="*{time}"
+          placeholder="time"
+          type="text"
+        />
+        <input
+          id="capacity"
+          name="capacity"
+          th:field="*{capacity}"
+          placeholder="capacity"
+          type="text"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

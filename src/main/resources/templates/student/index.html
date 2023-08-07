@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <div>
+      <a th:href="@{faculty/form}">CREATE</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Faculty ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="faculty: ${facultys}">
+            <td th:text="${faculty.faculty_id}"></td>
+            <td th:text="${faculty.name}"></td>
+            <td>
+              <a th:href="@{faculty/form/{id} (id = ${faculty.faculty_id})}"
+                >EDIT</a
+              >|
+              <form
+                th:action="@{/faculty/delete/{id} (id = ${faculty.faculty_id})}"
+                method="post"
+              >
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <div>
+      <a th:href="@{schedule/form}">CREATE</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Schedule ID</th>
+            <th>Class ID</th>
+            <th>Room ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Time</th>
+            <th>Capacity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="schedule: ${schedules}">
+            <td th:text="${schedule.schedule_id}"></td>
+            <td th:text="${schedule.group}"></td>
+            <td th:text="${schedule.room}"></td>
+            <td th:text="${schedule.start_date}"></td>
+            <td th:text="${schedule.end_date}"></td>
+            <td th:text="${schedule.time}"></td>
+            <td th:text="${schedule.capacity}"></td>
+            <td>
+              <a th:href="@{schedule/form/{id} (id = ${schedule.schedule_id})}"
+                >EDIT</a
+              >|
+              <form
+                th:action="@{/schedule/delete/{id} (id = ${schedule.schedule_id})}"
+                method="post"
+              >
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
