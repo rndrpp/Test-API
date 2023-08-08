@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,8 +21,14 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer schedule_id;
-    private Integer group;
-    private Integer room;
+    @OneToOne
+    @JoinColumn(name = "group")
+    private Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "room")
+    private Room room;
+    
     private String start_date;
     private String end_date;
     private String time;
@@ -37,6 +44,26 @@ public class Schedule {
 
     public void setSchedule_id(Integer schedule_id) {
         this.schedule_id = schedule_id;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public Group getGroup_Id() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public String getStart_date() {
@@ -79,20 +106,5 @@ public class Schedule {
         this.registrations = registrations;
     }
 
-    public Integer getGroup() {
-        return group;
-    }
-
-    public void setGroup(Integer group) {
-        this.group = group;
-    }
-
-    public Integer getRoom() {
-        return room;
-    }
-
-    public void setRoom(Integer room) {
-        this.room = room;
-    }
-
+    
 }

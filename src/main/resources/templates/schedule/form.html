@@ -5,19 +5,15 @@
         <input
           id="id"
           name="schedule_id"
-          th:field="*{schedule_id}"
+          placeholder="id"
           type="text"
         />
         <select th:field = "*{group}">
-          <option th:each="group : ${groups}" th:value="${group.group_id}" th:selected="{group.group_id}" th:text="${group.name}"></option>
+          <option th:each="group : ${groups}" th:value="${group.group_id}" th:selected="${group.group_id}" th:text="${group.name}"></option>
         </select>
-        <input
-          id="room"
-          name="room"
-          th:field="*{room}"
-          placeholder="room id"
-          type="text"
-        />
+        <select th:field = "*{room}">
+          <option th:each="room : ${rooms}" th:value="${room.room_id}" th:selected="${room.room_id}" th:text="${room.name}"></option>
+        </select>
         <input
           id="start_date"
           name="start_date"

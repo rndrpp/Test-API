@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entities.Registration;
+import com.example.demo.services.StudentService;
+import com.example.demo.services.ScheduleService;
 import com.example.demo.services.RegistrationService;
 
 @Controller
@@ -16,6 +18,12 @@ import com.example.demo.services.RegistrationService;
 public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     @GetMapping
     public String index(Model model) {
@@ -27,10 +35,15 @@ public class RegistrationController {
     @GetMapping(value = { "form", "form/{id}" })
     public String form(Model model, @PathVariable(required = false) Integer id) {
         if (id != null) {
+            model.addAttribute("students", studentService.Get());
+            model.addAttribute("schedules", scheduleService.Get());
             model.addAttribute("registration", registrationService.Get(id));
             
         } else {
+            model.addAttribute("students", studentService.Get());
+            model.addAttribute("schedules", scheduleService.Get());
             model.addAttribute("registration", new Registration());
+            
 
         }
         return "registration/form";
@@ -39,7 +52,7 @@ public class RegistrationController {
     // POST
 
     @PostMapping("save")
-    public String submit(Registration registration) {
+    public String save(Registration registration) {
         Boolean result = registrationService.Save(registration);
         if (result) {
             return "redirect:/registration";

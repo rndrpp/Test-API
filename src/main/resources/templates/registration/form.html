@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div>
+      <form th:action="@{/registration/save}" method="post" th:object="${registration}">
+        <input
+          id="id"
+          name="registration_id"
+          placeholder="id"
+          type="text"
+        />
+        <select th:field = "*{student}">
+          <option th:each="student : ${students}" th:value="${student.student_id}" th:selected="${student.student_id}" th:text="${student.student_id}"></option>
+        </select>
+        <select th:field = "*{schedule}">
+          <option th:each="schedule : ${schedules}" th:value="${schedule.schedule_id}" th:selected="${schedule.schedule_id}" th:text="${schedule.schedule_id}"></option>
+        </select>
+        <input
+          id="status"
+          name="status"
+          th:field="*{status}"
+          placeholder="status"
+          type="text"
+        />
+        <input
+          id="registration_time"
+          name="registration_time"
+          th:field="*{registration_time}"
+          placeholder="registration time"
+          type="text"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

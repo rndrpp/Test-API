@@ -1,0 +1,38 @@
+<html>
+  <body>
+    <div>
+      <a th:href="@{registration/form}">CREATE</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Registration ID</th>
+            <th>Student ID</th>
+            <th>registration ID</th>
+            <th>Status</th>
+            <th>Registration Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="registration: ${registrations}">
+            <td th:text="${registration.registration_id}"></td>
+            <td th:text="${registration.student?.student_id}"></td>
+            <td th:text="${registration.schedule?.schedule_id}"></td>
+            <td th:text="${registration.status}"></td>
+            <td th:text="${registration.registration_time}"></td>
+            <td>
+              <a th:href="@{registration/form/{id} (id = ${registration.registration_id})}"
+                >EDIT</a
+              >|
+              <form
+                th:action="@{/registration/delete/{id} (id = ${registration.registration_id})}"
+                method="post"
+              >
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

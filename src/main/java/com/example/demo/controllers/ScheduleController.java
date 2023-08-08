@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entities.Schedule;
 import com.example.demo.services.GroupService;
+import com.example.demo.services.RoomService;
 import com.example.demo.services.ScheduleService;
 
 @Controller
@@ -20,6 +21,9 @@ public class ScheduleController {
 
     @Autowired
     private GroupService groupService;
+
+    @Autowired
+    private RoomService roomService;
 
     @GetMapping
     public String index(Model model) {
@@ -32,11 +36,13 @@ public class ScheduleController {
     public String form(Model model, @PathVariable(required = false) Integer id) {
         if (id != null) {
             model.addAttribute("groups", groupService.Get());
+            model.addAttribute("rooms", roomService.Get());
             model.addAttribute("schedule", scheduleService.Get(id));
             
         } else {
             model.addAttribute("groups", groupService.Get());
-            model.addAttribute("schedule", scheduleService.Get());
+            model.addAttribute("rooms", roomService.Get());
+            model.addAttribute("schedule", new Schedule());
             
 
         }
@@ -46,7 +52,7 @@ public class ScheduleController {
     // POST
 
     @PostMapping("save")
-    public String submit(Schedule schedule) {
+    public String save(Schedule schedule) {
         Boolean result = scheduleService.Save(schedule);
         if (result) {
             return "redirect:/schedule";

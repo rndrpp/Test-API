@@ -4,7 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name ="tb_m_group")
@@ -15,6 +18,11 @@ public class Group {
     private String name;
     private Integer course;
     private Integer lecturer;
+
+    @OneToOne(mappedBy = "group")
+    @JsonIgnore
+    private Schedule schedule;
+
     public Integer getGroup_id() {
         return group_id;
     }

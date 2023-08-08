@@ -17,8 +17,8 @@
         <tbody>
           <tr th:each="schedule: ${schedules}">
             <td th:text="${schedule.schedule_id}"></td>
-            <td th:text="${schedule.group}"></td>
-            <td th:text="${schedule.room}"></td>
+            <td th:text="${schedule.group?.name}"></td>
+            <td th:text="${schedule.room?.name}"></td>
             <td th:text="${schedule.start_date}"></td>
             <td th:text="${schedule.end_date}"></td>
             <td th:text="${schedule.time}"></td>
