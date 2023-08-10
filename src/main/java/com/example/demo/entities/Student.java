@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_m_student")
@@ -18,15 +21,18 @@ public class Student extends Human {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer student_id;
     private Integer semester;
+    private String email;
     @ManyToOne
     @JoinColumn(name = "program")
     private Program program;
 
-    
-
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<Registration> registrations;
 
+    @OneToOne(mappedBy = "student")
+    @JsonIgnore
+    private User user;
 
 
     public Integer getStudent_id() {
@@ -73,6 +79,18 @@ public class Student extends Human {
 
     public void setRegistrations(List<Registration> registrations) {
         this.registrations = registrations;
+    }
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
  

@@ -34,4 +34,17 @@ public class StudentServiceImpl implements StudentService{
         studentRepository.deleteById(id);
         return !studentRepository.findById(id).isPresent();
     }
+
+    public StudentRepository getStudentRepository() {
+        return studentRepository;
+    }
+
+    public void setStudentRepository(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    @Override
+    public Integer findIdByEmail(String email) {
+        return studentRepository.findIdByEmail(email);
+    }
 }
